@@ -305,7 +305,7 @@ textarea{width:100%;min-height:120px} .count{margin-left:auto;color:#cfe1ff}
 <div class="toolbar">
   <button type="button" class="btn" id="btnSelAll">Выбрать всё</button>
   <button type="button" class="btn" id="btnSelNone">Снять</button>
-  <button type="button" class="btn" id="btnSelInvert">Инвертировать</button>
+  <button hidden type="button" class="btn" id="btnSelInvert">Инвертировать</button>
 
   <span style="width:12px;"></span>
 
