@@ -44,23 +44,8 @@ run_with_animation "Загрузка index.php" \
   sh -c 'curl -fsSL https://raw.githubusercontent.com/pegakmop/keeneticstatic/main/opt/share/www/static/index.php -o /opt/share/www/static/index.php'
 
 # 4) Конфиг Lighttpd (порт 95)
-run_with_animation "Настройка Lighttpd" sh -c '
-cat > /opt/etc/lighttpd/conf.d/80-static.conf << "EOF"
-$SERVER["socket"] == ":95" {
-    server.document-root = "/opt/share/www/"
-    server.modules += ( "mod_cgi", "mod_setenv", "mod_rewrite" )
-    cgi.assign = ( ".php" => "/opt/bin/php8-cgi" )
-    setenv.set-environment = ( "PATH" => "/opt/bin:/usr/bin:/bin" )
-    index-file.names = ( "index.php" )
-    url.rewrite-once = ( "^/(.*)" => "/static/$1" )
-}
-EOF
-
-# гарантируем подключение conf.d/*.conf
-MAIN=/opt/etc/lighttpd/lighttpd.conf
-grep -q "conf.d/\*\.conf" "$MAIN" 2>/dev/null || \
-  echo "include \"/opt/etc/lighttpd/conf.d/*.conf\"" >> "$MAIN"
-'
+run_with_animation "Настройка Lighttpd" \
+  sh -c 'curl -fsSL https://raw.githubusercontent.com/pegakmop/keeneticstatic/main/opt/etc/lighttpd/conf.d/80-static.conf -o /opt/etc/lighttpd/conf.d/80-static.conf'
 
 # 5) Перезапуск
 run_with_animation "Перезапуск Lighttpd" /opt/etc/init.d/S80lighttpd restart
