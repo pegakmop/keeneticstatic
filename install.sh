@@ -35,7 +35,7 @@ run_with_animation "Создание директорий" \
     mkdir -p /opt/share/www/static /opt/etc/lighttpd/conf.d
 
 run_with_animation "Создание index.php" 
-curl -sL https://raw.githubusercontent.com/pegakmop/keeneticwebstatic/refs/heads/main/opt/share/www/static/index.php -o /opt/share/www/static/index.php
+curl -sL https://raw.githubusercontent.com/pegakmop/keeneticstatic/refs/heads/main/opt/share/www/static/index.php -o /opt/share/www/static/index.php
 
 run_with_animation "Настройка Lighttpd" sh -c 'cat > /opt/etc/lighttpd/conf.d/80-static.conf <<EOF
 server.port := 8095
