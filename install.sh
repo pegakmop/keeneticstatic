@@ -38,16 +38,16 @@ run_with_animation "Создание index.php"
 curl -sL https://raw.githubusercontent.com/pegakmop/keeneticwebstatic/refs/heads/main/opt/share/www/static/index.php -o /opt/share/www/static/index.php
 
 run_with_animation "Настройка Lighttpd" sh -c 'cat > /opt/etc/lighttpd/conf.d/80-static.conf <<EOF
-server.port := 8899
+server.port := 8095
 server.username := ""
 server.groupname := ""
 
-\$HTTP["host"] =~ "^(.+):8899$" {
-    url.redirect = ( "^/static/" => "http://%1:99" )
+\$HTTP["host"] =~ "^(.+):8095$" {
+    url.redirect = ( "^/static/" => "http://%1:95" )
     url.redirect-code = 301
 }
 
-\$SERVER["socket"] == ":99" {
+\$SERVER["socket"] == ":95" {
     server.document-root = "/opt/share/www/"
     server.modules += ( "mod_cgi" )
     cgi.assign = ( ".php" => "/opt/bin/php8-cgi" )
