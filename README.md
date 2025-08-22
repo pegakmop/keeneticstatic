@@ -2,5 +2,5 @@
 
 Установить:
 ```
-curl -fsSL https://raw.githubusercontent.com/pegakmop/keeneticwebstatic/refs/heads/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/pegakmop/keeneticstatic/refs/heads/main/install.sh | sh
 ```
